@@ -1,0 +1,13 @@
+.remind-date-app-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 15px;
+  background-color: rgb(181, 181, 181);
+  border-bottom: 2px solid rgb(112, 205, 255);
+
+  &__title {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+}

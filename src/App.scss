@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.remind-date-app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.remind-date-app-wrapper {
+  border: 2px solid rgb(112, 205, 255);
+  width: 600px;
+  margin-top: 50px;
+  height: 400px;
+}
+
+.remind-date-app-main {
+  display: flex;
+  gap: 10px;
+  margin: 10px;
+}
+
+.list-remind {
+  border: 2px solid rgb(50, 221, 50);
+  width: 50%;
+  height: 300px;
+}

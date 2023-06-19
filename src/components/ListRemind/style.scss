@@ -1,0 +1,38 @@
+.remind-item {
+  &__box {
+    border: 1px solid gray;
+    margin: 5px 10px;
+    border-radius: 5px;
+
+    &--done {
+      background-color: rgb(255, 192, 192);
+    }
+  }
+
+  &__date-grp {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__button {
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+
+    svg {
+      font-size: 10px;
+      margin: 2px;
+    }
+
+    &--done {
+      background-color: rgb(255, 192, 192);
+    }
+  }
+
+  &__date,
+  &__note {
+    font-size: 10px;
+    margin: 2px 10px;
+  }
+}
