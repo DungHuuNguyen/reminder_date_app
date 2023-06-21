@@ -1,15 +1,32 @@
 import React, { useState } from "react";
-import "./style.scss";
 import { DatePicker, Input } from "antd";
+// Mình install antd thì antd đã install dayjs để làm datepicker rồi
+// Nên không cần npm i dayjs nữa
+import dayjs from "dayjs";
+import "./style.scss";
 
 const FormAddRemind = (props) => {
-  const [inputNote, setInputNote] = useState("");
-  const [inputDate, setInputDate] = useState("");
+  const [inputNote, setInputNote] = useState("Ăn cơm");
+  const [inputDate, setInputDate] = useState(
+    // syntax dayjs
+    dayjs(new Date()).format("YYYY-MM-DD")
+  );
+  // console.log(dayjs(new Date()).format("YYYY-MM-DD"));
+  // console.log(dayjs(new Date()).format("DD/MM/YYYY"));
+
+  // Cách validate hay hơn??
+  // const [errorForm, setErrorForm] = useState({});
+
+  // {errorForm.note && ....}
+
   const { handleAddNote } = props;
 
   const onChangeInputDate = (date, dateString) => {
-    console.log(dateString);
-    return setInputDate(dateString);
+    // validate dayjs
+    if (dayjs(dateString, "YYYY-MM-DD", true).isValid()) {
+      // setInputDate(date);
+      setInputDate(dateString);
+    }
   };
 
   const handleChangeInputNote = (event) => {
@@ -23,6 +40,14 @@ const FormAddRemind = (props) => {
     setInputNote("");
   };
 
+  // const handleValidateForm = () => {
+  //   if (!inputDate )
+  //   setErrorForm({
+  //     note: "Vui lòng nhập nhắc nhở",
+  //     date: "Vui lòng nhập ngày nhắc nhở",
+  //   });
+  // };
+
   return (
     <form className="form-add-remind" onSubmit={handleSubmitForm}>
       <div className="form-add-remind__add-note">
@@ -33,19 +58,25 @@ const FormAddRemind = (props) => {
           onChange={handleChangeInputNote}
         />
       </div>
-      <span className="error-message">Vui lòng nhập nhắc nhở</span>
+      {!inputNote && (
+        <span className="form-add-remind__error-message form-add-remind__error-message--show">
+          Vui lòng nhập nhắc nhở
+        </span>
+      )}
 
       <div className="date-remind">
         <div className="date-remind__left">
           <label className="date-remind__title">Ngày nhắc:</label>
           <DatePicker
             onChange={onChangeInputDate}
-            value={new Date(inputDate)}
+            value={dayjs(inputDate, "YYYY-MM-DD")}
           />
         </div>
         <button className="date-remind__btn">Lưu ngày</button>
       </div>
-      <span className="error-message">Vui lòng nhập yyyy/mm/dd</span>
+      {!inputDate && (
+        <span className="error-message">Vui lòng nhập YYYY/DD/MM</span>
+      )}
     </form>
   );
 };

@@ -9,6 +9,17 @@
     min-width: 80px;
     font-weight: 600;
   }
+
+  &__error-message {
+    display: hide;
+    color: red;
+    font-size: 12px;
+    margin-left: 80px;
+
+    &--show {
+      display: block;
+    }
+  }
 }
 
 .date-remind {
@@ -38,7 +49,7 @@
 }
 
 .error-message {
-  color: red;
+  display: hide;
   font-size: 12px;
   margin-left: 80px;
 }
