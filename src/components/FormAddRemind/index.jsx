@@ -14,11 +14,6 @@ const FormAddRemind = (props) => {
   // console.log(dayjs(new Date()).format("YYYY-MM-DD"));
   // console.log(dayjs(new Date()).format("DD/MM/YYYY"));
 
-  // Cách validate hay hơn??
-  // const [errorForm, setErrorForm] = useState({});
-
-  // {errorForm.note && ....}
-
   const { handleAddNote } = props;
 
   const onChangeInputDate = (date, dateString) => {
@@ -39,14 +34,6 @@ const FormAddRemind = (props) => {
     handleAddNote(inputNote, inputDate);
     setInputNote("");
   };
-
-  // const handleValidateForm = () => {
-  //   if (!inputDate )
-  //   setErrorForm({
-  //     note: "Vui lòng nhập nhắc nhở",
-  //     date: "Vui lòng nhập ngày nhắc nhở",
-  //   });
-  // };
 
   return (
     <form className="form-add-remind" onSubmit={handleSubmitForm}>
@@ -74,9 +61,6 @@ const FormAddRemind = (props) => {
         </div>
         <button className="date-remind__btn">Lưu ngày</button>
       </div>
-      {!inputDate && (
-        <span className="error-message">Vui lòng nhập YYYY/DD/MM</span>
-      )}
     </form>
   );
 };

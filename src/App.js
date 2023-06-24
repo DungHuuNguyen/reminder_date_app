@@ -4,23 +4,18 @@ import FormAddRemind from "./components/FormAddRemind";
 import ListRemind from "./components/ListRemind";
 import { useState } from "react";
 import KEY_REMIND_LIST from "./constants/constant";
+import dayjs from "dayjs";
 
 function App() {
   const [listRemind, setListRemind] = useState(
     JSON.parse(localStorage.getItem(KEY_REMIND_LIST)) || []
   );
 
+  // console.log(dayjs(new Date()).format("YYYY-MM-DD"));
+
   const renderListRemind = (list) => {
     return list.map((item) => {
       console.log(item.date);
-
-      // if (
-      //   new Date(item.date).getDate() === new Date().getDate() &&
-      //   new Date(item.date).getMonth() === new Date().getMonth() &&
-      //   new Date(item.date).getFullYear() === new Date().getFullYear()
-      // ) {
-      //   return alert(`Hôm nay bạn phải ${item.note}  !!!`);
-      // }
 
       return (
         <ListRemind
@@ -34,7 +29,11 @@ function App() {
 
   const handleAddNote = (_inputNote, _inputDate) => {
     if (_inputNote === "") return;
-    if (new Date(toString(_inputDate)).getTime() < new Date().getTime()) return;
+    if (
+      new Date(`${dayjs(new Date()).format("YYYY-MM-DD")} 12:00:00`).getTime() >
+      new Date(`${_inputDate} 12:00:00`).getTime()
+    )
+      return;
 
     const note = {
       id: new Date().getTime(),
@@ -76,7 +75,11 @@ function App() {
     <div className="App">
       <div className="remind-date-app-container">
         <div className="remind-date-app-wrapper">
-          <Header listRemind={listRemind} handleRemindNote={handleRemindNote} />
+          <Header
+            key={listRemind.id}
+            listRemind={listRemind}
+            handleRemindNote={handleRemindNote}
+          />
           <div className="remind-date-app-main">
             <FormAddRemind handleAddNote={handleAddNote} />
 
